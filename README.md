@@ -1,46 +1,30 @@
-# What is PHP PNGQuant
+# What is Name That Color
 
-PHP-PNGQuant is a non-official wrapper for the great [PNGQuant](https://github.com/pornel/pngquant), the command-line utility and a library for lossy compression of PNG images.
+This library is a PHP port of the known JS Script to find out the closest color name by its hex code.
 
-# Requirements
-
-You need `pngquant` accesible from the PATH. If the utility isn't available for any reason, you can change the path to the binary using the `setBinaryPath` method:
-
-```php
-<?php
-
-use ourcodeworld\PNGQuant\PNGQuant;
-
-$instance = new PNGQuant();
-
-// Change the path to the binary of pngquant, for example in windows would be (with an example path):
-$instance->setBinaryPath("C:\\Users\\sdkca\\Desktop\\pngquant.exe")
-    // Other options of PNGQuant here
-    ->execute();
-```
-
+ 
 # Installation
 
-php-pngquant can be used either with or without Composer.
+Name That Color can be used either with or without Composer.
 
 ## With Composer
 
-The preferred way to use php-pngquant is with Composer. Execute the following command to install this package as a dependency in your project:
+The preferred way to use name-that-color is with Composer. Execute the following command to install this package as a dependency in your project:
 
 ```batch
-composer require ourcodeworld/php-pngquant
+composer require ourcodeworld/name-that-color
 ```
 
 ## Without Composer
 
-If you don't use composer, you can still use the wrapper. Download the [PNGQuant.php](https://github.com/ourcodeworld/php-pngquant/blob/master/src/PNGQuant.php) class from the repository and then use `require_once` to import it in your code:
+If you don't use composer, you can still use the wrapper. Download the [ColorInterpreter.php](https://github.com/ourcodeworld/name-that-color/blob/master/src/ColorInterpreter.php) class from the repository and then use `require_once` to import it in your code:
 
 ```php
 <?php
 
-require_once("PNGQuant.php");
+require_once("ColorInterpreter.php");
 
-$instance = new PNGQuant();
+$instance = new ColorInterpreter();
 
 // Configuration here ...
 ```
