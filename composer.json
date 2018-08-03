@@ -1,0 +1,24 @@
+{
+    "name": "ourcodeworld/name-that-color",
+    "description": "A non-official PHP port of the NTC JS library to find out the name of the closest matching color.",
+    "type": "library",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Carlos Delgado",
+            "email": "dev@ourcodeworld.com",
+            "homepage": "https://ourcodeworld.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ourcodeworld\\NameThatColor\\": "src/"
+        }
+    },
+    "keywords": [
+        "name that color","color converted","hex","hsl","rgb"
+    ]
+}
