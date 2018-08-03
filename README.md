@@ -1,7 +1,6 @@
 # What is Name That Color
 
 This library is a PHP port of the known JS Script to find out the closest color name by its hex code.
-
  
 # Installation
 
@@ -30,72 +29,66 @@ $instance = new ColorInterpreter();
 ```
 # Example
 
-Save the file directly into a directory with a file name.
+Include the ColorInterpreter class and call the name method that returns an array with the closest color interpretation providen by the script. The result array contains three keys:
+
+- hex: the hex color of the closest color in the class.
+- name: the human name given to the color.
+- exact: boolean that determines wheter the color code is exact as the name or not.
 
 ```php
 // Include the class
-use ourcodeworld\PNGQuant\PNGQuant;
+use ourcodeworld\NameThatColor\ColorInterpreter as NameThatColor;
 
-$instance = new PNGQuant();
+$instance = new NameThatColor();
 
-// Set the path to the image to compress
-$exit_code = $instance->setImage("/a-folder/image-original.png")
-    // Set the output filepath
-    ->setOutputImage("/a-folder/image-compressed.png")
-    // Overwrite output file if exists, otherwise pngquant will generate output ...
-    ->overwriteExistingFile()
-    // As the quality in pngquant isn't fixed (it uses a range)
-    // set the quality between 50 and 80
-    ->setQuality(50,80)
-    // Execute the command
-    ->execute();
+$result = $instance->name("#008559");
 
-// if exit code is equal to 0 then everything went right !
-if(!$exit_code){
-    echo "Image succesfully compressed";
-}else{
-    echo "Something went wrong (status code $exit_code)  with description: ". $instance->getErrorTable()[(string) $exit_code];
+var_dump($result);
+
+array(3) {
+  ["hex"]=>
+  string(7) "#01826B"
+  ["name"]=>
+  string(8) "Deep Sea"
+  ["exact"]=>
+  bool(false)
 }
 ```
 
-If you need the raw data of the image (store the binary data of the compressed image), you can use the `getRawOutput` function:
+This class offers other utilities as converting an hex color code to HSL or RGB as well in case you need them:
 
 ```php
 // Include the class
-use ourcodeworld\PNGQuant\PNGQuant;
+use ourcodeworld\NameThatColor\ColorInterpreter as NameThatColor;
 
-$instance = new PNGQuant();
+$instance = new NameThatColor();
 
-// Set the path to the image to compress
-$result = $instance->setImage("/a-folder/image-original.png")
-    // Overwrite output file if exists, otherwise pngquant will generate output ...
-    ->overwriteExistingFile()
-    // As the quality in pngquant isn't fixed (it uses a range)
-    // set the quality between 50 and 80
-    ->setQuality(50,80)
-    // Retrieve RAW data from pngquant
-    ->getRawOutput();
-
-$exit_code = $result["statusCode"];
-
-
-// if exit code is equal to 0 then everything went right !
-if($exit_code == 0){
-
-    $rawImage = imagecreatefromstring($result["imageData"]);
-
-    // Example Save the PNG Image from the raw data into a file or do whatever you want.
-    // imagepng($rawImage , 'newfile.png');
-
-    echo "Image succesfully compressed, do something with the raw Data";
-}else{
-    echo "Something went wrong (status code $exit_code)  with description: ". $instance->getErrorTable()[(string) $exit_code];
+// From hex to HSL
+$hsl_data = $instance->hsl("#008559");
+var_dump($hsl_data);
+array(3) {
+  [0]=>
+  int(113)
+  [1]=>
+  int(255)
+  [2]=>
+  int(66)
 }
+
+// From hex to RGB
+$rgb_data = $instance->rgb("#008559");
+var_dump($rgb_data);
+array(3) {
+  [0]=>
+  int(0)
+  [1]=>
+  int(133)
+  [2]=>
+  int(89)
+}
+
 ```
 
-# Documentation
-
-For further information and examples of the wrapper, please [visit the official documentation here](http://docs.ourcodeworld.com/projects/php-pngquant).
 
 The MIT License (MIT)
 =====================
