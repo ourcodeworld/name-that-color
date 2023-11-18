@@ -3,7 +3,7 @@
     "description": "A non-official PHP port of the NTC JS library to find out the name of the closest matching color.",
     "type": "library",
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=8.2"
     },
     "license": "mit",
     "authors": [
